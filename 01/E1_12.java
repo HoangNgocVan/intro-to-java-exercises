@@ -1,3 +1,8 @@
+/*
+  Assume a runner runs 24 miles in 1 hour, 40 minutes, and 35 seconds. Write
+  a program that displays the average speed in kilometers per hour.
+*/
+
 public class E1_12 {
   public static void main(String[] args) {
     System.out.println("kph: " + mphToKph(milesPerHour(24, 100.58)));
