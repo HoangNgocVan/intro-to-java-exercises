@@ -48,7 +48,8 @@ public class E3_01 {
     System.out.println(output);
   }
 
-  private static double calculateRoot(double a, double b, double disc, boolean isR1) {
+  private static double calculateRoot(double a, double b, double disc,
+    boolean isR1) {
     double root;
     if (isR1) {
       root = (-b + Math.sqrt(disc)) / (2 * a);
