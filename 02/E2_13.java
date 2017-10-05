@@ -28,9 +28,11 @@ public class E2_13 {
     double monthlySavingAmount = input.nextDouble();
     double monthlyInterestRate = 0.05/12;
 
-    double accountValue = accountValue(monthlySavingAmount, monthlyInterestRate, 6);
+    double accountValue = accountValue(monthlySavingAmount, monthlyInterestRate,
+      6);
 
-    System.out.printf("After the sixth month, the account value is $%.2f\n", accountValue);
+    System.out.printf("After the sixth month, the account value is $%.2f\n",
+      accountValue);
   }
 
   private static double accountValue(double savings, double rate, int months) {

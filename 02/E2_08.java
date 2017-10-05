@@ -20,6 +20,7 @@ public class E2_08 {
     long totalHours = totalMinutes / 60;
     long currentHour = (totalHours + offset) % 24;
 
-    System.out.println("Current time is " + currentHour + ":" + currentMinute + ":" + currentSecond);
+    System.out.println("Current time is " + currentHour + ":" + currentMinute +
+      ":" + currentSecond);
   }
 }

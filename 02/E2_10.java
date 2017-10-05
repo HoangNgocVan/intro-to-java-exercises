@@ -22,7 +22,8 @@ public class E2_10 {
     System.out.print("Enter the final temperature: ");
     double finalTemperature = input.nextDouble();
 
-    double energyNeeded = calculateEnergy(kilogramsOfWater, initialTemperature, finalTemperature);
+    double energyNeeded = calculateEnergy(kilogramsOfWater, initialTemperature,
+      finalTemperature);
 
     System.out.println("The energy needed is " + energyNeeded);
   }

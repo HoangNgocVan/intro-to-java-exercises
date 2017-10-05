@@ -20,6 +20,7 @@ public class E2_11 {
       currentPopulation -= (secondsPerYear / 13);
     }
 
-    System.out.println("After " + numberOfYears + " years: " + currentPopulation);
+    System.out.println("After " + numberOfYears + " years: " +
+      currentPopulation);
   }
 }
