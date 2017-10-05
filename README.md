@@ -1,6 +1,5 @@
 # Synopsis
-This repository contains solutions for exercises from Y. Daniel Liang's *Introduction to Java Programming,
-Comprehensive Version, 10th Edition*.
+This repository contains solutions for exercises from Y. Daniel Liang's *Introduction to Java Programming, Comprehensive Version, 10th Edition*. Some solutions may draw from material in later chapters, and therefore be unsuitable for study purposes.
 
 # Progress
 - Chapter 01: COMPLETE
