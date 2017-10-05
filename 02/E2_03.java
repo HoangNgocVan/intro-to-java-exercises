@@ -1,3 +1,8 @@
+/*
+  Write a program that reads a number in feet, converts it to meters, and
+  displays the result. One foot is 0.305 meter.
+*/
+
 import java.util.Scanner;
 
 public class E2_03 {
@@ -7,7 +12,7 @@ public class E2_03 {
     double feet = input.nextDouble();
 
     double meters = feetToMeters(feet);
-    
+
     System.out.println(feet + " feet is " + meters + " meters");
   }
 
