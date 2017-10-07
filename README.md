@@ -4,7 +4,7 @@ This repository contains solutions for exercises from Y. Daniel Liang's *Introdu
 # Progress
 - __Chapter 01: COMPLETE__
 - __Chapter 02: COMPLETE__
-- Chapter 03: (incomplete)
+- Chapter 03: (missing: 3.27, 3.28, 3.29, 3.32, 3.34)
 - Chapter 04: (incomplete)
 - Chapter 05: (incomplete)
 - Chapter 06: (incomplete)
