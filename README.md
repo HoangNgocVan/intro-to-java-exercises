@@ -5,7 +5,7 @@ This repository contains solutions for exercises from Y. Daniel Liang's *Introdu
 - __Chapter 01: COMPLETE__
 - __Chapter 02: COMPLETE__
 - __Chapter 03: COMPLETE__
-- Chapter 04: (incomplete)
+- __Chapter 04: COMPLETE__
 - Chapter 05: (incomplete)
 - Chapter 06: (incomplete)
 - Chapter 07: (incomplete)
