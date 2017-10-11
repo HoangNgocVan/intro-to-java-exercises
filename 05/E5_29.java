@@ -51,7 +51,7 @@ public class E5_29 {
       days = 31;
     } else if (m == 4 || m == 6 || m == 9 || m == 11) {
       days = 30;
-    } else {
+    } else if (m == 2) {
       days = isLeapYear(y) ? 29 : 28;
     }
     return days;
