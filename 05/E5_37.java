@@ -17,10 +17,10 @@ public class E5_37 {
 
   private static String decToBin(int dec) {
     StringBuilder bin = new StringBuilder();
-    while (dec != 0) {
+    do {
       bin.insert(0, dec % 2);
       dec /= 2;
-    }
+    } while (dec != 0);
     return bin.toString();
   }
 }
