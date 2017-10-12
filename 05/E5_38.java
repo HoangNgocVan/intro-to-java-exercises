@@ -17,10 +17,10 @@ public class E5_38 {
 
   private static String decToOctal(int dec) {
     StringBuilder oct = new StringBuilder();
-    while (dec != 0) {
+    do {
       oct.insert(0, dec % 8);
       dec /= 8;
-    }
+    } while (dec != 0);
     return oct.toString();
   }
 }
