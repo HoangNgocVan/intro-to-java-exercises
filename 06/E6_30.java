@@ -16,34 +16,57 @@ public class E6_30 {
   }
 
   public static void playCraps() {
-    int d1 = rollDice();
-    int d2 = rollDice();
+    int sum = getRollSum();
 
-    int sum = d1 + d2;
-    System.out.println("You rolled " + d1 + " + " + d2 + " = " + sum);
-
-    if (sum == 2 || sum == 3 || sum == 12) {
-      System.out.println("You lose");
-    } else if (sum == 7 || sum == 11) {
-      System.out.println("You win");
+    int firstRoundOutcome = firstRoundWinner(sum);
+    if (firstRoundOutcome == 1) {
+      displayOutcome(firstRoundOutcome);
+    } else if (firstRoundOutcome == -1) {
+      displayOutcome(firstRoundOutcome);
     } else {
       int point = sum;
-      int sum2;
+      int secondRoundOutcome;
       do {
-        int r1 = rollDice();
-        int r2 = rollDice();
-        sum2 = r1 + r2;
-        System.out.println("You rolled " + r1 + " + " + r2 + " = " + sum2);
-      } while (sum2 != 7 && sum2 != point);
-      if (sum2 == 7) {
-        System.out.println("You lose");
-      } else {
-        System.out.println("You win");
-      }
+        sum = getRollSum();
+        secondRoundOutcome = secondRoundWinner(sum, point);
+      } while (secondRoundOutcome == 0);
+      displayOutcome(secondRoundOutcome);
     }
   }
 
-  public static int rollDice() {
+  private static int firstRoundWinner(int sum) {
+    // 1 is win, 0 is establish point, -1 is loss
+    int outcome = 0;
+    if (sum == 2 || sum == 3 || sum == 12) { outcome = -1; }
+    else if (sum == 7 || sum == 11) { outcome = 1; }
+    return outcome;
+  }
+
+  private static int secondRoundWinner(int sum, int point) {
+    // 1 is win, 0 is roll again, -1 is loss
+    int outcome = 0;
+    if (sum == 7) { outcome = -1; }
+    if (sum == point) { outcome = 1; }
+    return outcome;
+  }
+
+  private static void displayOutcome(int winner) {
+    // expects 1 for win, -1 for loss
+    StringBuilder s = new StringBuilder("You ");
+    if (winner == 1) { s.append("win"); }
+    else if (winner == -1) { s.append("lose"); }
+    System.out.println(s);
+  }
+
+  private static int getRollSum() {
+    int d1 = rollDie();
+    int d2 = rollDie();
+    int sum = d1 + d2;
+    System.out.println("You rolled " + d1 + " + " + d2 + " = " + sum);
+    return sum;
+  }
+
+  private static int rollDie() {
     return (int)(Math.random() * 6) + 1;
   }
 }
