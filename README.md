@@ -8,7 +8,7 @@ This repository contains solutions for exercises from Y. Daniel Liang's *Introdu
 - __Chapter 04: COMPLETE__
 - __Chapter 05: COMPLETE__
 - __Chapter 06: COMPLETE__
-- Chapter 07: (incomplete)
+- Chapter 07: (missing 7.22)
 - Chapter 08: (incomplete)
 - Chapter 09: (incomplete)
 - Chapter 10: (incomplete)
