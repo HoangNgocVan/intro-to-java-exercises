@@ -20,7 +20,7 @@ public class E7_24 {
       cards = pickFourCards();
       count++;
 
-      // test deck for all suits
+      // test cards for all suits
       hasAllSuits = hasAllSuits(cards);
     }
 
