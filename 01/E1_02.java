@@ -9,13 +9,13 @@ public class E1_02 {
     }
     //OR
     int i = 0;
-    while(i < 5){
+    while (i < 5) {
       System.out.println("Welcome to Java");
     }
     i = 0;
     //OR
-    do{
+    do {
       System.out.println("Welcome to Java");
-    }while(i < 5);
+    } while (i < 5);
   }
 }
