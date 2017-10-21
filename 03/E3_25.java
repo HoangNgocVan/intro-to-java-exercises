@@ -26,11 +26,11 @@ public class E3_25 {
     double y4 = input.nextDouble();
 
     double a = y1 - y2;
-    double b = x1 - x2;
+    double b = -1 * (x1 - x2);
     double c = y3 - y4;
-    double d = x3 - x4;
-    double e = a * x1 - b * y1;
-    double f = c * x3 - d * y3;
+    double d = -1 * (x3 - x4);
+    double e = a * x1 - (x1 - x2) * y1;
+    double f = c * x3 - (x3 - x4) * y3;
 
     cramer(a, b, c, d, e, f);
   }
