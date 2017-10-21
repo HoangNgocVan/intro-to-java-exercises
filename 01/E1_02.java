@@ -7,5 +7,15 @@ public class E1_02 {
     for (int i = 0; i < 5; i++) {
       System.out.println("Welcome to Java");
     }
+    //OR
+    int i = 0;
+    while (i < 5) {
+      System.out.println("Welcome to Java");
+    }
+    i = 0;
+    //OR
+    do {
+      System.out.println("Welcome to Java");
+    } while (i < 5);
   }
 }
