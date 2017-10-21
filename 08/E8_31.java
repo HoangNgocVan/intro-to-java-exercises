@@ -48,11 +48,11 @@ public class E8_31 {
 
   public static double[] getIntersectingPoint(double[][] points) {
     double a = points[0][1] - points[1][1];
-    double b = points[0][0] - points[1][0];
+    double b = -1 * (points[0][0] - points[1][0]);
     double c = points[2][1] - points[3][1];
-    double d = points[2][0] - points[3][0];
-    double e = a * points[0][0] - b * points[0][1];
-    double f = c * points[2][0] - d * points[2][1];
+    double d = -1 * (points[2][0] - points[3][0]);
+    double e = a * points[0][0] - (points[0][0] - points[1][0]) * points[0][1];
+    double f = c * points[2][0] - (points[2][0] - points[3][0]) * points[2][1];
 
     double disc = a * d - b * c;
 
