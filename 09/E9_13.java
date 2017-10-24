@@ -58,10 +58,4 @@ public class E9_13 {
 
     return loc;
   }
-
-  private static class Location {
-    public int row;
-    public int column;
-    public double maxValue;
-  }
 }
