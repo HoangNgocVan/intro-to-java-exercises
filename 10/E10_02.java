@@ -1,4 +1,8 @@
+/*
+  Add the following new constructor in the BMI class:
 
+  public BMI(String name, int age, double weight, double feet, double inches)
+*/
 
 public class E10_02 {
   public static void main(String[] args) {
