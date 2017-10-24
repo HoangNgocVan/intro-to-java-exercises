@@ -26,8 +26,6 @@
   was created.
 */
 
-import java.util.Date;
-
 public class E9_07 {
   public static void main(String[] args) {
     Account account = new Account(1122, 20_000);
@@ -36,76 +34,5 @@ public class E9_07 {
     account.deposit(3_000);
 
     System.out.println(account);
-  }
-
-  private static class Account {
-    private int id;
-    private double balance;
-    private double annualInterestRate;
-    private Date dateCreated;
-
-    Account() {
-      this(0, 0.0);
-    }
-
-    Account(int id, double balance) {
-      this.id = id;
-      this.balance = balance;
-      annualInterestRate = 0.0;
-      dateCreated = new Date();
-    }
-
-    // getters
-    int getId() {
-      return id;
-    }
-
-    double getBalance() {
-      return balance;
-    }
-
-    double getAnnualInterestRate() {
-      return annualInterestRate;
-    }
-
-    Date getDateCreated() {
-      return dateCreated;
-    }
-
-    // setters
-    void setId(int id) {
-      this.id = id;
-    }
-
-    void setBalance(double balance) {
-      this.balance = balance;
-    }
-
-    void setAnnualInterestRate(double annualInterestRate) {
-      this.annualInterestRate = annualInterestRate / 100;
-    }
-
-    // instance methods
-    double getMonthlyInterestRate() {
-      return getAnnualInterestRate() / 12;
-    }
-
-    double getMonthlyInterest() {
-      return getBalance() * getMonthlyInterestRate();
-    }
-
-    void withdraw(double amount) {
-      setBalance(getBalance() - amount);
-    }
-
-    void deposit(double amount) {
-      setBalance(getBalance() + amount);
-    }
-
-    @Override
-    public String toString() {
-      return "balance: " + getBalance() + "\nmonthly interest: " +
-        getMonthlyInterest() + "\ndate created: " + getDateCreated();
-    }
   }
 }
