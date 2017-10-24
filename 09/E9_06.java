@@ -49,41 +49,4 @@ public class E9_06 {
       nums[index] = temp;
     }
   }
-
-  private static class Stopwatch {
-    private long startTime;
-    private long endTime;
-
-    Stopwatch() {
-      startTime = System.currentTimeMillis();
-    }
-
-    long getStartTime() {
-      return startTime;
-    }
-
-    long getEndTime() {
-      return endTime;
-    }
-
-    void setStartTime(long startTime) {
-      this.startTime = startTime;
-    }
-
-    void setEndTime(long endTime) {
-      this.endTime = endTime;
-    }
-
-    void start() {
-      startTime = System.currentTimeMillis();
-    }
-
-    void stop() {
-      endTime = System.currentTimeMillis();
-    }
-
-    long getElapsedTime() {
-      return endTime - startTime;
-    }
-  }
 }
