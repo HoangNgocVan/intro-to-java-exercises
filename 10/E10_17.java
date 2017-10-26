@@ -10,7 +10,8 @@ public class E10_17 {
   public static void main(String[] args) {
     // Create a BigInteger for Long's maximum value, and another for its sqrt
     BigInteger longMax = new BigInteger(String.valueOf(Long.MAX_VALUE));
-    BigInteger n = sqrt(longMax);
+    long m = (long)(Math.sqrt(Long.MAX_VALUE));
+    BigInteger n = new BigInteger(String.valueOf(m));
 
     // Starting at n, find the next 10 squares of n, ensuring that they exceed
     // longMax
@@ -22,21 +23,6 @@ public class E10_17 {
         count++;
       }
       n = n.add(BigInteger.ONE);
-    }
-  }
-
-  // BigInteger sqrt function found on StackOverflow
-  public static BigInteger sqrt(BigInteger x) {
-    BigInteger div = BigInteger.ZERO.setBit(x.bitLength()/2);
-    BigInteger div2 = div;
-    // Loop until we hit the same value twice in a row, or wind
-    // up alternating.
-    for(;;) {
-      BigInteger y = div.add(x.divide(div)).shiftRight(1);
-      if (y.equals(div) || y.equals(div2))
-        return y;
-      div2 = div;
-      div = y;
     }
   }
 }
