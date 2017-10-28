@@ -42,6 +42,9 @@ public class MyStringBuilder1 {
   }
 
   public MyStringBuilder1 substring(int begin, int end) {
+    if (begin < 0 || end > length() || begin > end) {
+      throw new IndexOutOfBoundsException();
+    }
     String original = toString();
     String sub = original.substring(begin, end);
     return new MyStringBuilder1(sub);
