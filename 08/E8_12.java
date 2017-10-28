@@ -56,12 +56,47 @@ public class E8_12 {
       {11950, 45500, 117450, 190200, 372950}  // 3 - head of household
     };
 
-    double tax = brackets[status][0] * rates[0] +
-      (brackets[status][1] - brackets[status][0]) * rates[1] +
-      (brackets[status][2] - brackets[status][1]) * rates[2] +
-      (brackets[status][3] - brackets[status][2]) * rates[3] +
-      (brackets[status][4] - brackets[status][3]) * rates[4] +
-      (income - brackets[status][4]) * rates[5];
+    double tax = 0.0;
+    int lastIndex = -1;
+
+    // There are three basic parts to the tax calculation process.
+
+    // 1. The first bracket.
+    if (income <= brackets[status][0]) {
+      return income * rates[0];
+    } else {
+      tax += brackets[status][0] * rates[0];
+      // 2. Middle brackets. Iterate through the brackets, calculating tax
+      //    until taxable incomes does not exceed the current bracket.
+      for (int i = 1; i < brackets[status].length; i++) {
+        if (income > brackets[status][i]) {
+          tax += (brackets[status][i] - brackets[status][i - 1]) *
+            rates[i];
+        } else {
+          // Set the last index to the previous bracket and break from the loop.
+          lastIndex = i;
+          break;
+        }
+      }
+    }
+    // 3. The last bracket
+
+    // This handles the case of a taxable income that exceeds the low bound
+    // of the last tax bracket. We use the last tax bracket and the last rate
+    // to calculate the final portion of taxes.
+    int lastBracket = brackets[status].length - 1;
+    int lastRate = rates.length - 1;
+    if (income > brackets[status][lastBracket]) {
+      tax += (income - brackets[status][lastBracket]) *
+        rates[lastRate];
+    } else {
+      // And this handles all other cases. We use the last index of the loop
+      // (minus 1, to get the bracket before that) along with the last index
+      // of the rates (since we're calculating tax from the part that flows
+      // into the next bracket) to calculate the final portion of taxes.
+      tax += (income - brackets[status][lastIndex - 1]) *
+        rates[lastIndex];
+    }
 
     return tax;
   }
