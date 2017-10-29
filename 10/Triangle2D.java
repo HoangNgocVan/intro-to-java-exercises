@@ -16,11 +16,8 @@ public class Triangle2D {
   // instance methods
   public double getArea() {
     double s1 = distance(p1, p2);
-    System.out.println("s1: " + s1);
     double s2 = distance(p2, p3);
-    System.out.println("s2: " + s2);
     double s3 = distance(p3, p1);
-    System.out.println("s3: " + s3);
     double s = (s1 + s2 + s3) / 2.0;
     return Math.sqrt(s * (s - s1) * (s - s2) * (s - s3));
   }
