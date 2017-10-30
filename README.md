@@ -12,7 +12,7 @@ This repository contains solutions for exercises from Y. Daniel Liang's *Introdu
 - __Chapter 08: COMPLETE__
 - __Chapter 09: COMPLETE__
 - __Chapter 10: COMPLETE__
-- Chapter 11: (incomplete)
+- __Chapter 11: COMPLETE__
 - Chapter 12: (incomplete)
 - Chapter 13: (incomplete)
 - Chapter 14: (incomplete)
