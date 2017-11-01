@@ -16,8 +16,20 @@ import java.util.Scanner;
 
 public class E12_18 {
   public static void main(String[] args) throws Exception {
+    // handle the commandline argument
+    if (args.length != 1) {
+      System.out.println("Usage: java E12_18 srcRootDirectory");
+      System.exit(1);
+    }
+
+    File rootDir = new File(args[0]);
+
+    if (!rootDir.exists()) {
+      System.out.println("Directory " + rootDir.getName() + " not found");
+      System.exit(2);
+    }
+
     // get a list of all the chaptersi folders in the root directory
-    File rootDir = new File("chapters");
     File[] chapterList = rootDir.listFiles(new FilenameFilter() {
       public boolean accept(File dir, String name) {
         if (name.toLowerCase().contains("chapter")) {
