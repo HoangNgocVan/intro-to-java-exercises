@@ -13,13 +13,12 @@ public class E12_28 {
   public static void main(String[] args) {
     for (String s: args) {
       File file = new File(s);
-      if (s.matches(".*Exercise\\d_\\d+.*")) {
-        StringBuilder sb = new StringBuilder(s);
-        int index = sb.indexOf("Exercise");
-        sb.insert((index + 8), "0");
-        File newName = new File(sb.toString());
-        file.renameTo(newName);
+      StringBuilder sb = new StringBuilder(s);
+      if (s.matches("Exercise\\d_\\d+")) {
+        sb.insert(8, "0");
       }
+      File newName = new File(sb.toString());
+      file.renameTo(newName);
     }
   }
 }
