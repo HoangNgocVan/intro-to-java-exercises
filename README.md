@@ -1,7 +1,7 @@
-# Synopsis
+### Synopsis
 This repository contains solutions for exercises from Y. Daniel Liang's *Introduction to Java Programming, Comprehensive Version, 10th Edition*. Some solutions may draw from material in later chapters, and therefore be unsuitable for study purposes.
 
-# Progress
+### Progress
 - __Chapter 01: COMPLETE__
 - __Chapter 02: COMPLETE__
 - __Chapter 03: COMPLETE__
@@ -13,7 +13,7 @@ This repository contains solutions for exercises from Y. Daniel Liang's *Introdu
 - __Chapter 09: COMPLETE__
 - __Chapter 10: COMPLETE__
 - __Chapter 11: COMPLETE__
-- Chapter 12: (incomplete)
+- __Chapter 12: COMPLETE__
 - Chapter 13: (incomplete)
 - Chapter 14: (incomplete)
 - Chapter 15: (incomplete)
