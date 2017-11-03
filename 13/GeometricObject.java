@@ -1,4 +1,4 @@
-public abstract class GeometricObject implements Comparable<GeometricObject> {
+public abstract class GeometricObject {
   private String color = "white";
   private boolean filled;
   private java.util.Date dateCreated;
@@ -42,18 +42,4 @@ public abstract class GeometricObject implements Comparable<GeometricObject> {
   public abstract double getArea();
 
   public abstract double getPerimeter();
-
-  public static GeometricObject max(GeometricObject a, GeometricObject b) {
-    return a.compareTo(b) == 1 ? a : b;
-  }
-
-  @Override
-  public int compareTo(GeometricObject o) {
-    if (getArea() > o.getArea()) {
-      return 1;
-    } else if (getArea() < o.getArea()) {
-      return -1;
-    }
-    return 0;
-  }
 }
