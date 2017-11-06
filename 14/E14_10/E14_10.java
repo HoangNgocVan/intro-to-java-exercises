@@ -18,12 +18,12 @@ public class E14_10 extends Application {
   @Override
   public void start(Stage primaryStage) {
     CylinderPane pane = new CylinderPane(200, 200 / 2.5);
-    pane.setAlignment(Pos.CENTER);
     pane.setPadding(new Insets(20));
 
     Scene scene = new Scene(pane);
     primaryStage.setTitle("E14_10");
     primaryStage.setScene(scene);
+    primaryStage.setResizable(false);
     primaryStage.show();
   }
 
