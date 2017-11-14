@@ -1,10 +1,12 @@
 import java.util.ArrayList;
+import javafx.geometry.Point2D;
 
 public class SelfAvoidingWalk {
   private int size;
   private boolean[][] grid;
   private int cRow; // current row on grid
   private int cCol; // current column on grid
+  private ArrayList<Point2D> path;
 
   public SelfAvoidingWalk(int size) {
     this.size = size;
@@ -14,6 +16,7 @@ public class SelfAvoidingWalk {
   public int walk() {
     setGrid(); // reset the grid in case it has already been walked before
     grid[cRow][cCol] = true;
+    path.add(new Point2D(cCol, cRow));
 
     while (isDoneWalking() == 0) {
       ArrayList<Integer> directions = getValidDirections();
@@ -24,6 +27,7 @@ public class SelfAvoidingWalk {
       else if (ranDir == 2) { cRow++; }
       else if (ranDir == 3) { cCol--; }
       grid[cRow][cCol] = true;
+      path.add(new Point2D(cCol, cRow));
     }
 
     // -1 for dead-end path, 1 for non-dead-end path
@@ -32,13 +36,19 @@ public class SelfAvoidingWalk {
 
   private void setGrid() {
     grid = generateGrid(size);
-    cRow = size / 2 - 1;
-    cCol = size / 2 - 1;
+    cRow = (int)Math.floor(size / 2);
+    cCol = (int)Math.floor(size / 2);
+    path = new ArrayList<>();
   }
 
   private int isDoneWalking() {
     if (cRow == 0 || cRow == grid.length - 1 ||
         cCol == 0 || cCol == grid[0].length - 1) {
+      // fix the off-by-one error when drawing right-side or bottom-side
+      // exiting walks in JavaFX, by adding the final point to the path array
+      if (cRow == grid.length - 1) { path.add(new Point2D(cCol, cRow + 1)); }
+      if (cCol == grid[0].length - 1) { path.add(new Point2D(cCol + 1, cRow)); }
+
       // denotes non-dead-end path
       return 1;
     }
@@ -64,6 +74,10 @@ public class SelfAvoidingWalk {
 
   public boolean[][] getGrid() {
     return grid;
+  }
+
+  public ArrayList<Point2D> getPath() {
+    return path;
   }
 
   @Override
