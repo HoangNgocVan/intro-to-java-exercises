@@ -1,17 +1,18 @@
 import java.util.ArrayList;
 
 public class SelfAvoidingWalk {
+  private int size;
   private boolean[][] grid;
   private int cRow; // current row on grid
   private int cCol; // current column on grid
 
-  public SelfAvoidingWalk(int n) {
-    grid = generateGrid(n);
-    cRow = n / 2 - 1;
-    cCol = n / 2 - 1;
+  public SelfAvoidingWalk(int size) {
+    this.size = size;
+    setGrid();
   }
 
   public int walk() {
+    setGrid(); // reset the grid in case it has already been walked before
     grid[cRow][cCol] = true;
 
     while (isDoneWalking() == 0) {
@@ -27,6 +28,12 @@ public class SelfAvoidingWalk {
 
     // -1 for dead-end path, 1 for non-dead-end path
     return isDoneWalking();
+  }
+
+  private void setGrid() {
+    grid = generateGrid(size);
+    cRow = size / 2 - 1;
+    cCol = size / 2 - 1;
   }
 
   private int isDoneWalking() {
