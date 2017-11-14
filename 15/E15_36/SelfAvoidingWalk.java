@@ -7,8 +7,8 @@ public class SelfAvoidingWalk {
 
   public SelfAvoidingWalk(int n) {
     grid = generateGrid(n);
-    cRow = n / 2;
-    cCol = n / 2;
+    cRow = n / 2 - 1;
+    cCol = n / 2 - 1;
   }
 
   public int walk() {
