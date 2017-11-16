@@ -20,6 +20,8 @@ public class E16_07 extends Application {
   @Override
   public void start(Stage primaryStage) {
     ClockPane clockPane = new ClockPane();
+    clockPane.setMaxWidth(clockPane.getW());
+    clockPane.setMaxHeight(clockPane.getH());
 
     Label lbHour = new Label("Hour");
     Label lbMinute = new Label("Minute");
@@ -35,12 +37,11 @@ public class E16_07 extends Application {
     HBox controlPane = new HBox(10);
     controlPane.getChildren().addAll(lbHour, tfHour, lbMinute, tfMinute,
       lbSecond, tfSecond);
+    controlPane.setAlignment(Pos.CENTER);
 
     BorderPane pane = new BorderPane();
     pane.setCenter(clockPane);
     pane.setBottom(controlPane);
-    pane.setAlignment(clockPane, Pos.CENTER);
-    pane.setAlignment(controlPane, Pos.CENTER);
     pane.setMargin(clockPane, new Insets(20));
     pane.setMargin(controlPane, new Insets(0, 20, 10, 20));
 
@@ -62,6 +63,7 @@ public class E16_07 extends Application {
     Scene scene = new Scene(pane);
     primaryStage.setTitle("E16_07");
     primaryStage.setScene(scene);
+    primaryStage.setResizable(false);
     primaryStage.show();
   }
 
