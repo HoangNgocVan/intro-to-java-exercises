@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.geometry.Pos;
+import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 
 public class E16_09 extends Application {
@@ -26,6 +27,9 @@ public class E16_09 extends Application {
     Label lbIntersect = new Label();
 
     Pane rectPane = new Pane();
+    rectPane.setMinWidth(300);
+    rectPane.setMinHeight(300);
+    rectPane.setStyle("-fx-border-color: black");
     Rectangle r1 = new Rectangle(79, 20, 40, 50);
     Rectangle r2 = new Rectangle(150, 33, 50, 20);
     r1.setFill(Color.TRANSPARENT);
@@ -48,6 +52,7 @@ public class E16_09 extends Application {
     r1GridPane.addColumn(0, lbR1CenterX, lbR1CenterY, lbR1Width, lbR1Height);
     r1GridPane.addColumn(1, tfR1CenterX, tfR1CenterY, tfR1Width, tfR1Height);
     r1VBox.getChildren().addAll(lbR1Info, r1GridPane);
+    r1VBox.setStyle("-fx-border-color: black");
 
     tfR1CenterX.setPrefWidth(60);
     tfR1CenterY.setPrefWidth(60);
@@ -76,6 +81,7 @@ public class E16_09 extends Application {
     r2GridPane.addColumn(0, lbR2CenterX, lbR2CenterY, lbR2Width, lbR2Height);
     r2GridPane.addColumn(1, tfR2CenterX, tfR2CenterY, tfR2Width, tfR2Height);
     r2VBox.getChildren().addAll(lbR2Info, r2GridPane);
+    r2VBox.setStyle("-fx-border-color: black");
 
     tfR2CenterX.setPrefWidth(60);
     tfR2CenterY.setPrefWidth(60);
@@ -132,6 +138,7 @@ public class E16_09 extends Application {
 
     HBox infoPane = new HBox(10);
     infoPane.getChildren().addAll(r1VBox, r2VBox);
+    infoPane.setAlignment(Pos.CENTER);
 
     Button btRedraw = new Button("Redraw Rectangles");
 
@@ -140,11 +147,19 @@ public class E16_09 extends Application {
       r1.setY(20);
       r2.setX(150);
       r2.setY(33);
+
+      lbIntersect.setText("Two rectangles intersect? " +
+        (doIntersect(r1, r2) ? "Yes" : "No"));
     });
+
+    lbIntersect.setText("Two rectangles intersect? " +
+      (doIntersect(r1, r2) ? "Yes" : "No"));
 
     VBox pane = new VBox();
     pane.getChildren().addAll(lbIntersect, rectPane, infoPane, btRedraw);
     pane.setAlignment(Pos.CENTER);
+    pane.setMargin(btRedraw, new Insets(20));
+    pane.setMargin(rectPane, new Insets(20));
 
     Scene scene = new Scene(pane);
     primaryStage.setTitle("E16_08");
