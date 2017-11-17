@@ -8,18 +8,6 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.GridPane;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.geometry.Pos;
-import javafx.geometry.Insets;
-import javafx.geometry.Point2D;
 
 public class E16_09 extends Application {
   @Override
