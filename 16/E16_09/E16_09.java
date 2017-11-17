@@ -29,6 +29,7 @@ public class E16_09 extends Application {
     Scene scene = new Scene(pane);
     primaryStage.setTitle("E16_08");
     primaryStage.setScene(scene);
+    primaryStage.setResizable(false);
     primaryStage.show();
   }
 

@@ -18,6 +18,7 @@ public class RectangleAnalysisPane extends VBox {
   private Label lbIntersect;
 
   public RectangleAnalysisPane() {
+    // Set up the pane containing the rectangles
     rect = new RectanglePane(500);
     rect.setMinWidth(rect.getPaneSize());
     rect.setMinHeight(rect.getPaneSize());
@@ -32,9 +33,11 @@ public class RectangleAnalysisPane extends VBox {
     rect.getR1().setOnMouseDragged(dragRectangle);
     rect.getR2().setOnMouseDragged(dragRectangle);
 
+    // Set up the label that reports whether the two rectangles intersect
     lbIntersect = new Label();
     lbIntersect.setText(getIntersectText(rect));
 
+    // Set up the info panes for each rectangle
     rectInfo1 = new RectangleInfoPane("rectangle 1");
     rectInfo2 = new RectangleInfoPane("rectangle 2");
 
@@ -55,6 +58,11 @@ public class RectangleAnalysisPane extends VBox {
     rectInfo2.getTFHeight().setOnKeyPressed(
       getEnterInfoHandler(rect.getR2(), rectInfo2));
 
+    rectInfo1.updateInfo(rect.getR1());
+    rectInfo2.updateInfo(rect.getR2());
+
+    // Listen to changes in each rectangle's X and Y properties in order to
+    // update their respective info pane fields
     rect.getR1().xProperty().addListener(
       ov -> rectInfo1.updateInfo(rect.getR1()));
     rect.getR1().yProperty().addListener(
@@ -73,9 +81,6 @@ public class RectangleAnalysisPane extends VBox {
 
     getChildren().addAll(lbIntersect, rect, rectInfoBox, btRedraw);
     setAlignment(Pos.CENTER);
-
-    rectInfo1.updateInfo(rect.getR1());
-    rectInfo2.updateInfo(rect.getR2());
   }
 
   private static String getIntersectText(RectanglePane r) {
@@ -83,7 +88,7 @@ public class RectangleAnalysisPane extends VBox {
     sb.append(r.doIntersect() ? "Yes" : "No");
     return sb.toString();
   }
-
+  
   private static EventHandler<KeyEvent> getEnterInfoHandler(Rectangle r,
     RectangleInfoPane info) {
     return e -> {
