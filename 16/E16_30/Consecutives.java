@@ -113,7 +113,6 @@ public class Consecutives extends BorderPane {
       for (int j = i - 1, k = 1; j >= 0 && k <= i; j--, k++) {
         info[0] = j;
         info[1] = k;
-        info[4] = 3; // represents right-rising diagonal search
         if (foundConsecutiveFour(info)) {
           return;
         }
