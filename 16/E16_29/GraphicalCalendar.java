@@ -11,7 +11,7 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 public class GraphicalCalendar extends BorderPane {
-  Calendar currentMonth;
+  private Calendar currentMonth;
 
   public GraphicalCalendar() {
     currentMonth = new GregorianCalendar();
