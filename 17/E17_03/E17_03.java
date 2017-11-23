@@ -12,6 +12,7 @@ import java.io.BufferedInputStream;
 import java.io.FileOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.EOFException;
 import java.io.File;
 
 public class E17_03 {
@@ -34,16 +35,18 @@ public class E17_03 {
     }
 
     // Sum the contents of E17_03.dat
+    int sum = 0;
     try (
       DataInputStream input =
         new DataInputStream(
           new BufferedInputStream(new FileInputStream(file)));
     ) {
-      int sum = 0;
-      while (input.available() > 0) {
-        sum += input.readInt();
+      int r;
+      while ((r = input.readInt()) != -1) {
+        sum += r;
       }
-
+    } catch (EOFException ex) {
+      // do nothing
       System.out.println("The sum is " + sum);
     }
   }
