@@ -48,13 +48,12 @@ public class BinaryEditor extends BorderPane {
   private void loadFile() {
     StringBuilder sb = new StringBuilder();
     try (
-      DataInputStream input = new DataInputStream(
-        new FileInputStream(tfFileName.getText()));
+      FileInputStream input = new FileInputStream(tfFileName.getText());
     ) {
-      while (true) {
-        sb.append(getBits(input.readByte()));
+      int r;
+      while ((r = input.read()) != -1) {
+        sb.append(getBits(r));
       }
-    } catch (EOFException ex) {
       taFile.setText(sb.toString());
     } catch (IOException ex) {
       // do nothing
