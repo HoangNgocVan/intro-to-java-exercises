@@ -35,7 +35,6 @@ public class BitOutputStream implements AutoCloseable {
   public void close() throws IOException {
     bits = bits << (8 - position);
     output.write((byte)bits);
-    System.out.println(Integer.toBinaryString(bits));
     output.close();
   }
 }
