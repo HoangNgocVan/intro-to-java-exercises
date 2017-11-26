@@ -18,7 +18,7 @@ This repository contains solutions for exercises from Y. Daniel Liang's *Introdu
 - __Chapter 14: COMPLETE__
 - __Chapter 15: COMPLETE__
 - __Chapter 16: COMPLETE__
-- Chapter 17: (incomplete)
+- __Chapter 17: COMPLETE__
 - Chapter 18: (incomplete)
 - Chapter 19: (incomplete)
 - Chapter 20: (incomplete)
