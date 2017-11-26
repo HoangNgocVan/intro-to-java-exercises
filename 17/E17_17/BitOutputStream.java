@@ -21,6 +21,7 @@ public class BitOutputStream implements AutoCloseable {
 
     if (position == 8) {
       output.write((byte)bits);
+      bits = 0;
       position = 0;
     }
   }
@@ -33,8 +34,10 @@ public class BitOutputStream implements AutoCloseable {
   }
 
   public void close() throws IOException {
-    bits = bits << (8 - position);
-    output.write((byte)bits);
+    if (bits != 0) {
+      bits = bits << (8 - position);
+      output.write((byte)bits);
+    }
     output.close();
   }
 }
