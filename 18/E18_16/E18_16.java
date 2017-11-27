@@ -11,7 +11,6 @@
 */
 
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class E18_16 {
   public static void main(String[] args) {
