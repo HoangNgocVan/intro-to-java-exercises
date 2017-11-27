@@ -20,12 +20,22 @@ public class E18_21 {
   }
 
   public static String dec2Bin(int value) {
-    return dec2Bin(value, "");
+    // Because the recursive method breaks when the value becomes zero through
+    // repeated division by 2, we need a separate hook to ensure that when the
+    // user enters "0", it will actually be returned in binary, rather than an
+    // empty string.
+    boolean startingValueIsZero = (value == 0);
+    return dec2Bin(value, "", startingValueIsZero);
   }
 
-  public static String dec2Bin(int value, String binString) {
-    if (value == 0) { return binString; }
-    binString = (value % 2 == 0 ? "0" : "1") + binString;
-    return dec2Bin(value / 2, binString);
+  public static String dec2Bin(
+    int value, String binString, boolean startingValueIsZero) {
+    if (startingValueIsZero) {
+      return "0";
+    } else {
+      if (value == 0) { return binString; }
+      binString = (value % 2 == 0 ? "0" : "1") + binString;
+      return dec2Bin(value / 2, binString, startingValueIsZero);
+    }
   }
 }
