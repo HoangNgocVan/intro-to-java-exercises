@@ -23,10 +23,14 @@ public class E18_10 {
   }
 
   public static int count(String str, char a) {
-    if (str.length() > 0) {
+    return count(str, a, 0);
+  }
+
+  private static int count(String str, char a, int index) {
+    if (index < str.length()) {
       int match =
-        str.toLowerCase().charAt(0) == Character.toLowerCase(a) ? 1 : 0;
-      return match + count(str.substring(1, str.length()), a);
+        str.toLowerCase().charAt(index) == Character.toLowerCase(a) ? 1 : 0;
+      return match + count(str, a, index + 1);
     } else {
       return 0;
     }
