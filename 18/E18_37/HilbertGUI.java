@@ -21,7 +21,7 @@ public class HilbertGUI extends BorderPane {
 
   private void setOrder(int order) {
     this.order = order;
-    hilbert = new Hilbert(400, 400, order);
+    hilbert = new Hilbert(SIZE, SIZE, order);
     hilbert.generate();
     ArrayList<Double> points = hilbert.getPoints();
     drawPoints(points);
