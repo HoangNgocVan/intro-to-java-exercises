@@ -217,9 +217,6 @@ public class TwentyFour {
     Collections.sort(userNums);
     Collections.sort(currentNums);
 
-    System.out.println(userNums);
-    System.out.println(currentNums);
-
     for (int i = 0; i < userNums.size(); i++) {
       if (!userNums.get(i).equals(currentNums.get(i))) { return false; }
     }
@@ -304,11 +301,5 @@ public class TwentyFour {
       case '/': result = x / y; break;
     }
     return result;
-  }
-
-  public static void main(String[] args) {
-    TwentyFour tf = new TwentyFour();
-    String s = "(3 + 4 + 5 + 5)";
-    System.out.println(tf.expressionIsValid(s));
   }
 }
