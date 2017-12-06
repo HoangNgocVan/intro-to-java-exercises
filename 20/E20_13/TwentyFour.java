@@ -48,6 +48,7 @@ public class TwentyFour {
   }
 
   private void operandPermute() {
+    operandPermutations.clear();
     operandPermute(new ArrayList<Integer>(), cardNumbers);
   }
 
