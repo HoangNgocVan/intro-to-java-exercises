@@ -1,3 +1,8 @@
+/*
+  Implement the moveDisks method in Listing 18.8 using a stack instead of
+  recursion.
+*/
+
 import java.util.Scanner;
 import java.util.Stack;
 
