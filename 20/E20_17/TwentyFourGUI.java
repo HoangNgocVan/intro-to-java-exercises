@@ -49,7 +49,6 @@ public class TwentyFourGUI extends BorderPane {
     for (TextField textField: tfNums) {
       nums.add(Integer.parseInt(textField.getText()));
     }
-    System.out.println(nums);
     twentyFour = new TwentyFour(nums);
     tfSolve.setText(twentyFour.solve());
   }
