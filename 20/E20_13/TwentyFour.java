@@ -176,7 +176,16 @@ public class TwentyFour {
         operands.push(Double.parseDouble(t));
       }
     }
-    return operands.pop();
+
+    // Of all possible solutions, the permutation (3, 3, 8, 8) requires an
+    // approximation because of floating-point inaccuracy due to division
+    double num = operands.pop();
+    double epsilon = 0.0000001;
+    if (num < 24 + epsilon && num > 24 - epsilon) {
+      return 24;
+    } else {
+      return num;
+    }
   }
 
   public String addSpaces(String s) {
