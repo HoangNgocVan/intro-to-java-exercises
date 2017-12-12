@@ -21,8 +21,6 @@ public class E21_13 {
         continue;
       }
 
-      int index = getIndexForYear(year); // get the array index for year
-
       System.out.print("Enter the gender (M/F): ");
       String gender = input.next().toLowerCase();
 
@@ -34,23 +32,7 @@ public class E21_13 {
       System.out.print("Enter the name: ");
       String name = input.next();
 
-      if (gender.equals("m")) {
-        if (bn.getBoyData().get(index).get(name) != null) {
-          String rank = bn.getBoyData().get(index).get(name);
-          System.out.println("Boy name " + name + " is ranked #" + rank +
-            " in year " + year);
-        } else {
-          System.out.println(name + " not found");
-        }
-      } else if (gender.equals("f")) {
-        if (bn.getGirlData().get(index).get(name) != null) {
-          String rank = bn.getGirlData().get(index).get(name);
-          System.out.println("Girl name " + name + " is ranked #" + rank +
-            " in year " + year);
-        } else {
-          System.out.println(name + " not found");
-        }
-      }
+      printRanking(bn, year, gender, name);
 
       System.out.print("Enter another inquiry? (N to exit): ");
       if (input.next().toLowerCase().equals("n")) {
@@ -60,7 +42,27 @@ public class E21_13 {
     } while (true);
   }
 
-  public static int getIndexForYear(int year) {
+  private static void printRanking(
+    BabyNames bn, int year, String gender, String name) {
+    int index = getIndexForYear(year);
+    String rank = "";
+    StringBuilder result = new StringBuilder();
+    if (gender.equals("m")) {
+      rank = bn.getBoyData().get(index).get(name);
+      result.append("Boy ");
+    } else {
+      rank = bn.getGirlData().get(index).get(name);
+      result.append("Girl ");
+    }
+    if (rank == null) {
+      System.out.println("Name not found ");
+      return;
+    }
+    result.append("name " + name + " is ranked #" + rank + " in year " + year);
+    System.out.println(result);
+  }
+
+  private static int getIndexForYear(int year) {
     for (int i = 0, j = 2001; i < 10; i++, j++) {
       if (j == year) { return i; }
     }
