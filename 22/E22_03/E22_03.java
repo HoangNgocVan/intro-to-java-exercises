@@ -1,6 +1,8 @@
 /*
   Write a program that prompts the user to enter two strings and tests whether
-  the second string is a substring of the first string.
+  the second string is a substring of the first string. Suppose the neighboring
+  characters in the string are distinct. (Don't use the indexOf method in the
+  String class.) Your algorithm needs to be at least O(n) time.
 */
 
 import java.util.Scanner;
