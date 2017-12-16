@@ -96,7 +96,8 @@ public class E22_08 {
   }
 
   private static boolean isPrime(long n, long[] arr) {
-    for (int i = 0; i < arr.length && arr[i] != 0; i++) {
+    double sqrt = Math.sqrt(n);
+    for (int i = 0; i < arr.length && arr[i] != 0 && arr[i] <= sqrt; i++) {
       if (n % arr[i] == 0) { return false; }
     }
     return true;
