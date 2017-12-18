@@ -41,11 +41,11 @@ public class ClosestPairPane extends Pane {
 
   private void connectClosestPoints() {
     if (circles.size() >= 2) {
-      Pair closest = Pair.getClosestPair(getPointsForCircles());
-      Point p1 = closest.getP1();
-      Point p2 = closest.getP2();
+      double[][] closest = getClosestPair(getPointsForCircles());
+      double[] p1 = closest[0];
+      double[] p2 = closest[1];
       getChildren().remove(connection);
-      connection = new Line(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+      connection = new Line(p1[0], p1[1], p2[0], p2[1]);
       getChildren().add(connection);
     } else {
       getChildren().remove(connection);
@@ -60,5 +60,27 @@ public class ClosestPairPane extends Pane {
       points[i][1] = c.getCenterY();
     }
     return points;
+  }
+
+  private double[][] getClosestPair(double[][] s) {
+    double[] p1 = s[0];
+    double[] p2 = s[1];
+
+    for (int i = 0; i < s.length; i++) {
+      for (int j = i + 1; j < s.length; j++) {
+        double closest = distance(p1[0], p1[1], p2[0], p2[1]);
+        double candidate = distance(s[i][0], s[i][1], s[j][0], s[j][1]);
+        if (candidate < closest) {
+          p1 = s[i];
+          p2 = s[j];
+        }
+      }
+    }
+
+    return new double[][]{p1, p2};
+  }
+
+  private double distance(double x1, double y1, double x2, double y2) {
+    return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
   }
 }
