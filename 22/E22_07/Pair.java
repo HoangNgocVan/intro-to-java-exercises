@@ -1,6 +1,6 @@
+import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Pair {
   private Point p1;
@@ -23,90 +23,6 @@ public class Pair {
     return distance(p1, p2);
   }
 
-  public static Pair getClosestPair(double[][] points) {
-    Point[] pts = new Point[points.length];
-    for (int i = 0; i < points.length; i++) {
-      Point p = new Point(points[i][0], points[i][1]);
-      pts[i] = p;
-    }
-    return getClosestPair(pts);
-  }
-
-  public static Pair getClosestPair(Point[] points) {
-    Arrays.sort(points);
-    Point[] pointsOrderedOnX = points.clone();
-    Arrays.sort(points, new CompareY());
-    Point[] pointsOrderedOnY = points.clone();
-    return distance(
-      pointsOrderedOnX, 0, pointsOrderedOnX.length - 1, pointsOrderedOnY);
-  }
-
-  public static Pair distance(Point[] pointsOrderedOnX, int low, int high,
-    Point[] pointsOrderedOnY) {
-    if (low >= high) {
-      return null;
-    } else if (low + 1 == high) {
-      return new Pair(pointsOrderedOnX[low], pointsOrderedOnX[high]);
-    }
-
-    int mid = (low + high) / 2;
-    Pair p1 = distance(pointsOrderedOnX, low, mid, pointsOrderedOnY);
-    Pair p2 = distance(pointsOrderedOnX, mid + 1, high, pointsOrderedOnY);
-
-    double distance = 0;
-    Pair p = null;
-
-    if (p1 == null && p2 == null) {
-      distance = Double.MAX_VALUE;
-    } else if (p1 == null) {
-      distance = p2.getDistance();
-      p = p2;
-    } else if (p2 == null) {
-      distance = p1.getDistance();
-      p = p1;
-    } else {
-      distance = Math.min(p1.getDistance(), p2.getDistance());
-      p = ((p1.getDistance() <= p2.getDistance())? p1 : p2);
-    }
-
-    List<Point> stripL = new ArrayList<Point>();
-    List<Point> stripR = new ArrayList<Point>();
-    List<Point> s1 = new ArrayList<>(Arrays.asList(
-    Arrays.copyOfRange(pointsOrderedOnX, low, mid)));
-    List<Point> s2 = new ArrayList<>(
-    Arrays.asList(Arrays.copyOfRange(pointsOrderedOnX, mid + 1, high)));
-    for (Point point: pointsOrderedOnY) {
-      if (s1.contains(point) &&
-      pointsOrderedOnX[mid].getX() - point.getX() <= distance) {
-        stripL.add(point);
-      } else if (point.getX() - pointsOrderedOnX[mid].getX() <= distance){
-        stripR.add(point);
-      }
-    }
-
-    double d3 = distance;
-    int r = 0;
-    for (Point point: stripL) {
-      while (r < stripR.size() &&
-        point.getY() > stripR.get(r).getY() + distance) {
-        r++;
-      }
-
-      int r1 = r;
-      while (r1 < stripR.size() &&
-        stripR.get(r1).getY() <= point.getY() + distance) {
-        if (d3 > distance(point, stripR.get(r1))) {
-          d3 = distance(point, stripR.get(r1));
-          p.p1 = point;
-          p.p2 = stripR.get(r1);
-        }
-        r1++;
-      }
-    }
-
-    return p;
-  }
-
   public static double distance(Point p1, Point p2) {
     double x1 = p1.getX();
     double y1 = p1.getY();
@@ -119,8 +35,91 @@ public class Pair {
     return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
   }
 
+  public static Pair getClosestPair(double[][] points) {
+    Point[] p = new Point[points.length];
+    for (int i = 0; i < points.length; i++) {
+      p[i] = new Point(points[i][0], points[i][1]);
+    }
+    return getClosestPair(p);
+  }
+
+  public static Pair getClosestPair(Point[] points) {
+    Arrays.sort(points);
+    Point[] ySorted = new Point[points.length];
+    System.arraycopy(points, 0, ySorted, 0, ySorted.length);
+    Arrays.sort(ySorted, new CompareY());
+    return getClosestPair(points, 0, points.length - 1, ySorted);
+  }
+
+  public static Pair getClosestPair(Point[] pointsOrderedOnX, int low, int high,
+    Point[] pointsOrderedOnY) {
+    if (high - low <= 3) {
+      return bruteForceClosestPair(pointsOrderedOnX, low, high);
+    }
+
+    int mid = (low + high) / 2;
+
+    Pair p1 = getClosestPair(pointsOrderedOnX, low, mid, pointsOrderedOnY);
+    Pair p2 = getClosestPair(pointsOrderedOnX, mid + 1, high, pointsOrderedOnY);
+
+    double d = Math.min(p1.getDistance(), p2.getDistance());
+
+    List<Point> stripL = new ArrayList<>();
+    List<Point> stripR = new ArrayList<>();
+    double midX = pointsOrderedOnX[mid].getX();
+    for (Point p: pointsOrderedOnY) {
+      if (p.getX() <= midX && midX - p.getX() <= d) {
+        stripL.add(p);
+      } else if (p.getX() > midX && p.getX() - midX <= d) {
+        stripR.add(p);
+      }
+    }
+
+    Pair p3 = null;
+    int r = 0;
+    for (Point p: stripL) {
+      while (r < stripR.size() && stripR.get(r).getY() <= p.getY() - d) {
+        r++;
+      }
+
+      int r1 = r;
+      while (r1 < stripR.size() && Math.abs(stripR.get(r1).getY() - p.getY()) <= d) {
+        if (distance(p, stripR.get(r1)) < d) {
+          d = distance(p, stripR.get(r1));
+          p3 = new Pair(p, stripR.get(r1));
+        }
+
+        r1++;
+      }
+    }
+
+    if (p3 == null) {
+      return min(p1, p2);
+    } else {
+      return p3;
+    }
+  }
+
+  public static Pair bruteForceClosestPair(Point[] points, int low, int high) {
+    Point p1 = points[low];
+    Point p2 = points[low + 1];
+    for (int i = low; i <= high; i++) {
+      for (int j = i + 1; j <= high; j++) {
+        if (distance(points[i], points[j]) < distance(p1, p2)) {
+          p1 = points[i];
+          p2 = points[j];
+        }
+      }
+    }
+    return new Pair(p1, p2);
+  }
+
+  public static Pair min(Pair p1, Pair p2) {
+    return p1.getDistance() < p2.getDistance() ? p1 : p2;
+  }
+
   @Override
   public String toString() {
-    return p1 + ", " + p2;
+    return p1 + " " + p2;
   }
 }
