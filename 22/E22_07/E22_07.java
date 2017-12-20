@@ -8,7 +8,7 @@
 
 public class E22_07 {
   public static void main(String[] args) {
-    double[][] s = new double[1000][2];
+    double[][] s = new double[100][2];
     for (int i = 0; i < s.length; i++) {
       s[i][0] = Math.random() * 1000;
       s[i][1] = Math.random() * 1000;

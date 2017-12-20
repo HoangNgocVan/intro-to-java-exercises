@@ -76,19 +76,21 @@ public class Pair {
     }
 
     Pair p3 = null;
-    int r = 0;
+    int r = 0; // stripR current index
     for (Point p: stripL) {
+      // Starting at the bottom of stripR, seek the first index within distance
+      // d of current stripL point
       while (r < stripR.size() && stripR.get(r).getY() <= p.getY() - d) {
         r++;
       }
 
-      int r1 = r;
-      while (r1 < stripR.size() && Math.abs(stripR.get(r1).getY() - p.getY()) <= d) {
+      int r1 = r; // copy current index for use in next loop
+      while (r1 < stripR.size() &&
+        Math.abs(stripR.get(r1).getY() - p.getY()) <= d) {
         if (distance(p, stripR.get(r1)) < d) {
           d = distance(p, stripR.get(r1));
           p3 = new Pair(p, stripR.get(r1));
         }
-
         r1++;
       }
     }
