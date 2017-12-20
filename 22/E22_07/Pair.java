@@ -85,7 +85,7 @@ public class Pair {
       }
 
       int r1 = r; // copy current index for use in next loop
-      while (r1 < stripR.size() &&
+      while (r1 < stripR.size() && r1 - r <= 7 &&
         Math.abs(stripR.get(r1).getY() - p.getY()) <= d) {
         if (distance(p, stripR.get(r1)) < d) {
           d = distance(p, stripR.get(r1));
