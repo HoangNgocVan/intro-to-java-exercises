@@ -25,10 +25,6 @@ public class HistogramPane extends Pane {
     drawBars();
   }
 
-  public BinarySearchState[] getStates() {
-    return states;
-  }
-
   private void drawBars() {
     getChildren().clear();
     bars = new Rectangle[searchSet.length];
@@ -44,7 +40,7 @@ public class HistogramPane extends Pane {
     }
   }
 
-  public void getSearchStates(int key) {
+  private void getSearchStates(int key) {
     states = BinarySearchState.generateSearchStates(searchSet, key);
   }
 
@@ -60,7 +56,7 @@ public class HistogramPane extends Pane {
     return -2; // not finished processing search states
   }
 
-  public void paintBarsForState(int low, int high, int mid) {
+  private void paintBarsForState(int low, int high, int mid) {
     paintBarsWhite();
     paintRangeGray(low, high);
     paintMidBlack(mid);

@@ -4,7 +4,7 @@ public class BinarySearchState {
   private int low;
   private int high;
   private int mid;
-  private boolean wasFound = false;
+  private boolean found = false;
 
   public BinarySearchState(int[] array, int key, int low, int high, int mid) {
     this.array = array;
@@ -27,11 +27,11 @@ public class BinarySearchState {
   }
 
   public boolean getFound() {
-    return wasFound;
+    return found;
   }
 
   public void setFound(boolean found) {
-    wasFound = found;
+    this.found = found;
   }
 
   public static BinarySearchState[] generateSearchStates(int[] array, int key) {
@@ -64,6 +64,6 @@ public class BinarySearchState {
            "low: " + low + "\n" +
            "high: " + high + "\n" +
            "mid: " + mid + "\n" +
-           "found: " + wasFound + "\n";
+           "found: " + found + "\n";
   }
 }
