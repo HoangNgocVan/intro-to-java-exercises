@@ -3,15 +3,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
-import javafx.scene.paint.Color;
 import javafx.geometry.Pos;
 
 public class HistogramGUI extends BorderPane {
-  Text tMessage;
-  TextField tfKey;
-  HistogramPane hpPane;
-  Button btStep;
-  int stateCount = 0;
+  private Text tMessage;
+  private TextField tfKey;
+  private HistogramPane hpPane;
+  private Button btStep;
+  private int stateCount = 0;
 
   public HistogramGUI() {
     drawGUI();
@@ -46,19 +45,13 @@ public class HistogramGUI extends BorderPane {
     }
 
     tfKey.setEditable(false);
+    int key = Integer.parseInt(tfKey.getText());
+    int result = hpPane.next(key, stateCount);
 
-    if (hpPane.getStates() == null) {
-      hpPane.getSearchStates(Integer.parseInt(tfKey.getText()));
-    }
-
-    LinearSearchState s = hpPane.getStates()[stateCount];
-    hpPane.paintBarsWhite();
-    hpPane.getBars()[stateCount].setFill(Color.BLACK);
-
-    if (s.getFound()) {
-      tMessage.setText("The key is found in the array at index " + s.getIndex());
+    if (result >= 0) {
+      tMessage.setText("The key is found in the array at index " + result);
       btStep.setDisable(true);
-    } else if (stateCount == hpPane.getStates().length - 1 && !s.getFound()) {
+    } else if (result == -1) {
       tMessage.setText("The key is not in the array");
       btStep.setDisable(true);
     }

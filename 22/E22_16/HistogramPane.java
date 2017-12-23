@@ -20,18 +20,6 @@ public class HistogramPane extends Pane {
     setUp();
   }
 
-  public LinearSearchState[] getStates() {
-    return states;
-  }
-
-  public Rectangle[] getBars() {
-    return bars;
-  }
-
-  public int[] getSearchSet() {
-    return searchSet;
-  }
-
   public void setUp() {
     states = null;
     shuffleSearchSet();
@@ -53,7 +41,12 @@ public class HistogramPane extends Pane {
     }
   }
 
-  public void paintBarsWhite() {
+  private void paintBarForState(int index) {
+    paintBarsWhite();
+    bars[index].setFill(Color.BLACK);
+  }
+
+  private void paintBarsWhite() {
     for (int i = 0; i < bars.length; i++) {
       bars[i].setFill(Color.WHITE);
     }
@@ -70,7 +63,19 @@ public class HistogramPane extends Pane {
     }
   }
 
-  public void getSearchStates(int key) {
+  private void getSearchStates(int key) {
     states = LinearSearchState.generateSearchStates(searchSet, key);
+  }
+
+  public int next(int key, int stateIndex) {
+    if (states == null) { getSearchStates(key); }
+    LinearSearchState s = states[stateIndex];
+    paintBarForState(s.getIndex());
+    if (s.getFound()) {
+      return s.getIndex(); // index of search term in array
+    } else if (stateIndex == states.length - 1) {
+      return -1; // search term not found in array
+    }
+    return -2; // not finished processing search states
   }
 }

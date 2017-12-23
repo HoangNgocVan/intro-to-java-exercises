@@ -1,21 +1,13 @@
 public class LinearSearchState {
-  int[] array;
-  int key;
-  int index;
-  boolean wasFound = false;
+  private int[] array;
+  private int key;
+  private int index;
+  private boolean wasFound = false;
 
   public LinearSearchState(int[] array, int key, int index) {
     this.array = array;
     this.key = key;
     this.index = index;
-  }
-
-  public int[] getArray() {
-    return array;
-  }
-
-  public int getKey() {
-    return key;
   }
 
   public int getIndex() {
