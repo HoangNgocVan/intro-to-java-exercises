@@ -10,7 +10,6 @@ public class HistogramGUI extends BorderPane {
   private TextField tfKey;
   private HistogramPane hpPane;
   private Button btStep;
-  private int stateCount = 0;
 
   public HistogramGUI() {
     drawGUI();
@@ -46,7 +45,7 @@ public class HistogramGUI extends BorderPane {
 
     tfKey.setEditable(false);
     int key = Integer.parseInt(tfKey.getText());
-    int result = hpPane.next(key, stateCount);
+    int result = hpPane.next(key);
 
     if (result >= 0) {
       tMessage.setText("The key is found in the array at index " + result);
@@ -55,13 +54,10 @@ public class HistogramGUI extends BorderPane {
       tMessage.setText("The key is not in the array");
       btStep.setDisable(true);
     }
-
-    stateCount++;
   }
 
   private void reset() {
     hpPane.setUp();
-    stateCount = 0;
     tMessage.setText("");
     tfKey.setEditable(true);
     btStep.setDisable(false);
