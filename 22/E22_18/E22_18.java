@@ -23,6 +23,7 @@ public class E22_18 extends Application {
     Scene scene = new Scene(hist);
     primaryStage.setTitle("E22_18");
     primaryStage.setScene(scene);
+    primaryStage.setResizable(false);
     primaryStage.show();
   }
 
