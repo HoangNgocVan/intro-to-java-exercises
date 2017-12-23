@@ -13,6 +13,7 @@ public class HistogramPane extends Pane {
 
   private BinarySearchState[] states;
   private Rectangle[] bars;
+  private int stateIndex = 0;
 
   public HistogramPane() {
     setPrefSize(WIDTH, PANE_HEIGHT);
@@ -21,6 +22,7 @@ public class HistogramPane extends Pane {
   }
 
   public void setUp() {
+    stateIndex = 0;
     states = null;
     drawBars();
   }
@@ -44,7 +46,7 @@ public class HistogramPane extends Pane {
     states = BinarySearchState.generateSearchStates(searchSet, key);
   }
 
-  public int next(int key, int stateIndex) {
+  public int next(int key) {
     if (states == null) { getSearchStates(key); }
     BinarySearchState s = states[stateIndex];
     paintBarsForState(s.getLow(), s.getHigh(), s.getMid());
@@ -53,6 +55,7 @@ public class HistogramPane extends Pane {
     } else if (stateIndex >= states.length || states[stateIndex + 1] == null) {
       return -1; // value not found in array
     }
+    stateIndex++;
     return -2; // not finished processing search states
   }
 
