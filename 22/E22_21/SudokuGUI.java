@@ -16,8 +16,8 @@ public class SudokuGUI extends BorderPane {
     Button btSolve = new Button("Solve");
     Button btClear = new Button("Clear");
 
-    btSolve.setOnAction(e -> solve(sPane, tMessage));
-    btClear.setOnAction(e -> clear(sPane, tMessage));
+    btSolve.setOnAction(e -> solve(sPane, tMessage, btSolve));
+    btClear.setOnAction(e -> clear(sPane, tMessage, btSolve));
 
     HBox hbControl = new HBox(10);
     hbControl.getChildren().addAll(btSolve, btClear);
@@ -29,18 +29,21 @@ public class SudokuGUI extends BorderPane {
     setAlignment(tMessage, Pos.CENTER);
   }
 
-  private void solve(SudokuPane sPane, Text tMessage) {
+  private void solve(SudokuPane sPane, Text tMessage, Button btSolve) {
     try {
       if (!sPane.solve()) {
         tMessage.setText("Only 1-9 or empty spaces allowed");
+      } else {
+        btSolve.setDisable(true);
       }
     } catch (IllegalArgumentException ex) {
       tMessage.setText("Invalid Sudoku Grid");
     }
   }
 
-  private void clear(SudokuPane sPane, Text tMessage) {
+  private void clear(SudokuPane sPane, Text tMessage, Button btSolve) {
     sPane.clear();
     tMessage.setText("");
+    btSolve.setDisable(false);
   }
 }
