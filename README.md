@@ -23,7 +23,7 @@ This repository contains solutions for exercises from Y. Daniel Liang's *Introdu
 - __Chapter 19: COMPLETE__
 - __Chapter 20: COMPLETE__
 - __Chapter 21: COMPLETE__
-- Chapter 22: (incomplete)
+- __Chapter 22: COMPLETE__
 - Chapter 23: (incomplete)
 - Chapter 24: (incomplete)
 - Chapter 25: (incomplete)
