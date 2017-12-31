@@ -56,7 +56,7 @@ public class E23_06 {
 
   public static <E extends Comparable<E>> boolean ordered(E[] list,
     boolean ascending) {
-    return ordered(list, new AscendingComparator(), ascending);
+    return ordered(list, new AscendingComparator<E>(), ascending);
   }
 
   public static <E> boolean ordered(E[] list,
@@ -81,7 +81,7 @@ public class E23_06 {
     return true;
   }
 
-  private static class AscendingComparator<E extends Comparable>
+  private static class AscendingComparator<E extends Comparable<E>>
     implements Comparator<E> {
     @Override
     public int compare(E o1, E o2) {
