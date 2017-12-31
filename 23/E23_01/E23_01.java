@@ -36,22 +36,12 @@ public class E23_01 {
     displayList(copy2);
   }
 
-  public static <E extends Comparable> void bubbleSort(E[] list) {
-    boolean changed;
-    do {
-      changed = false;
-      for (int i = 0; i < list.length - 1; i++) {
-        if (list[i + 1].compareTo(list[i]) < 0) {
-          E temp = list[i];
-          list[i] = list[i + 1];
-          list[i + 1] = temp;
-          changed = true;
-        }
-      }
-    } while (changed);
+  public static <E extends Comparable<E>> void bubbleSort(E[] list) {
+    bubbleSort(list, new AscendingComparator<E>());
   }
 
-  public static <E> void bubbleSort(E[] list, Comparator<? super E> comparator) {
+  public static <E> void bubbleSort(E[] list,
+    Comparator<? super E> comparator) {
     boolean changed;
     do {
       changed = false;
@@ -71,5 +61,18 @@ public class E23_01 {
       System.out.print(list[i] + " ");
     }
     System.out.println();
+  }
+
+  private static class AscendingComparator<E extends Comparable<E>>
+    implements Comparator<E> {
+    @Override
+    public int compare(E o1, E o2) {
+      if (o1.compareTo(o2) < 0) {
+        return -1;
+      } else if (o1.compareTo(o2) > 0) {
+        return 1;
+      }
+      return 0;
+    }
   }
 }
