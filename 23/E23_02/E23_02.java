@@ -35,33 +35,8 @@ public class E23_02 {
     printList(copy2);
   }
 
-  public static <E extends Comparable> void mergeSort(E[] list) {
-    if (list.length > 1) {
-      E[] firstHalf = Arrays.copyOfRange(list, 0, list.length / 2);
-      E[] secondHalf = Arrays.copyOfRange(list, list.length / 2, list.length);
-      mergeSort(firstHalf);
-      mergeSort(secondHalf);
-
-      int current1 = 0;
-      int current2 = 0;
-      int current3 = 0;
-
-      while (current1 < firstHalf.length && current2 < secondHalf.length) {
-        if (firstHalf[current1].compareTo(secondHalf[current2]) < 0) {
-          list[current3++] = firstHalf[current1++];
-        } else {
-          list[current3++] = secondHalf[current2++];
-        }
-      }
-
-      while (current1 < firstHalf.length) {
-        list[current3++] = firstHalf[current1++];
-      }
-
-      while (current2 < secondHalf.length) {
-        list[current3++] = secondHalf[current2++];
-      }
-    }
+  public static <E extends Comparable<E>> void mergeSort(E[] list) {
+    mergeSort(list, new AscendingComparator<E>());
   }
 
   public static <E> void mergeSort(E[] list, Comparator<? super E> comparator) {
@@ -98,5 +73,18 @@ public class E23_02 {
       System.out.print(elem + " ");
     }
     System.out.println();
+  }
+
+  private static class AscendingComparator<E extends Comparable<E>>
+    implements Comparator<E> {
+    @Override
+    public int compare(E o1, E o2) {
+      if (o1.compareTo(o2) < 0) {
+        return -1;
+      } else if (o1.compareTo(o2) > 0) {
+        return 1;
+      }
+      return 0;
+    }
   }
 }
