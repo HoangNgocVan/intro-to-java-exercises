@@ -20,9 +20,9 @@ import java.util.Comparator;
 
 public class E23_06 {
   public static void main(String[] args) {
-    double[] list1 = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0};
-    int[] list2 = {1, 2, 3, 4, -21, 6, 7};
-    System.out.println(ordered(list1));
+    double[] list1 = {5, 4, 5, 4, 3, 2, 1};
+    int[] list2 = {1, 2, 3, 3, 3, 4, 5};
+    System.out.println(ordered(list1, false));
     System.out.println(ordered(list2));
   }
 
@@ -56,7 +56,9 @@ public class E23_06 {
 
   public static <E extends Comparable<E>> boolean ordered(E[] list,
     boolean ascending) {
-    return ordered(list, new AscendingComparator<E>(), ascending);
+    Comparator<E> comparator = ascending ?
+      new AscendingComparator<E>() : new DescendingComparator<E>();
+    return ordered(list, comparator, ascending);
   }
 
   public static <E> boolean ordered(E[] list,
@@ -69,14 +71,9 @@ public class E23_06 {
     E current = list[0];
     boolean correctOrder = true;
     for (int i = 1; i < list.length; i++) {
-      if (ascending) {
-        if (comparator.compare(list[i], current) > 0) { current = list[i]; }
-        else { correctOrder = false; }
-      } else {
-        if (comparator.compare(list[i], current) < 0) { current = list[i]; }
-        else { correctOrder = false; }
-      }
-      if (!correctOrder) { return false; }
+      int ord = comparator.compare(list[i], current);
+      if (ord >= 0) { current = list[i]; }
+      else { return false; }
     }
     return true;
   }
@@ -91,6 +88,29 @@ public class E23_06 {
         return 1;
       }
       return 0;
+    }
+
+    @Override
+    public String toString() {
+      return "Ascending Comparator";
+    }
+  }
+
+  private static class DescendingComparator<E extends Comparable<E>>
+    implements Comparator<E> {
+    @Override
+    public int compare(E o1, E o2) {
+      if (o1.compareTo(o2) < 0) {
+        return 1;
+      } else if (o1.compareTo(o2) > 0) {
+        return -1;
+      }
+      return 0;
+    }
+
+    @Override
+    public String toString() {
+      return "Descending Comparator";
     }
   }
 }
