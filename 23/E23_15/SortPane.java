@@ -39,10 +39,11 @@ public class SortPane extends Pane {
     }
   }
 
-  public void step() {
-    if (stateIndex >= states.size()) { return; }
+  public boolean step() {
+    if (stateIndex >= states.size()) { return true; }
     drawPane(false);
     stateIndex++;
+    return false;
   }
 
   public void reset() {
