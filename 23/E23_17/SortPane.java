@@ -9,6 +9,7 @@ public class SortPane extends Pane {
   private int stateIndex;
   private int[] originalList;
   private ArrayList<RadixState> states;
+  
   public SortPane() {
     set();
   }
