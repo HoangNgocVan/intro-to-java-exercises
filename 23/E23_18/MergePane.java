@@ -20,7 +20,7 @@ public class MergePane extends Pane {
     getChildren().clear();
 
     final double WIDTH = 600.0;
-    final double HEIGHT = 300.0;
+    final double HEIGHT = 125.0;
     setPrefSize(WIDTH, HEIGHT);
 
     int[] list1 = orig ? originalList1 : states.get(stateIndex).getList1();
@@ -30,58 +30,29 @@ public class MergePane extends Pane {
     int current2 = orig ? -1 : states.get(stateIndex).getCurrent2();
     int current3 = orig ? -1 : states.get(stateIndex).getCurrent3();
 
-    double xPos = 10.0;
-    double yPos = 50.0;
-    Text tList1 = new Text(xPos, yPos + 15, "list1");
-    getChildren().add(tList1);
-    xPos += 30.0;
-    for (int i = 0; i < list1.length; i++) {
-      Rectangle r = new Rectangle(xPos, yPos, 25, 20);
-      r.setFill(Color.WHITE);
-      r.setStroke(Color.BLACK);
-      Text tNum = new Text(r.getX(), r.getY() + 15, list1[i] + "");
-      getChildren().addAll(r, tNum);
-      if (!orig && i == current1) {
-        Text tCurrent1 = new Text(r.getX() + 5, r.getY() - 5, "C1");
-        getChildren().add(tCurrent1);
-      }
-      xPos += 30.0;
-    }
+    double xPos = drawArray(10.0, 25.0, list1, current1, orig, "list1", "C1");
+    drawArray(xPos + 30, 25.0, list2, current2, orig, "list2", "C2");
+    drawArray(10.0, 75.0, temp, current3, orig, "temp", "C3");
+  }
 
-    xPos += 30.0;
-    Text tList2 = new Text(xPos, yPos + 15, "list2");
-    getChildren().add(tList2);
-    xPos += 30.0;
-    for (int i = 0; i < list1.length; i++) {
-      Rectangle r = new Rectangle(xPos, yPos, 25, 20);
-      r.setFill(Color.WHITE);
-      r.setStroke(Color.BLACK);
-      Text tNum = new Text(r.getX(), r.getY() + 15, list2[i] + "");
-      getChildren().addAll(r, tNum);
-      if (!orig && i == current2) {
-        Text tCurrent2 = new Text(r.getX() + 5, r.getY() - 5, "C2");
-        getChildren().add(tCurrent2);
-      }
-      xPos += 30.0;
-    }
-
-    xPos = 10.0;
-    yPos = 100.0;
-    Text tTemp = new Text(xPos, yPos + 15, "temp");
-    getChildren().add(tTemp);
+  private double drawArray(double xPos, double yPos, int[] array,
+    int currentIndex, boolean orig, String arrayName, String indexName) {
+    Text tArrayName = new Text(xPos, yPos + 15, arrayName);
+    getChildren().add(tArrayName);
     xPos += 35.0;
-    for (int i = 0; i < temp.length; i++) {
+    for (int i = 0; i < array.length; i++) {
       Rectangle r = new Rectangle(xPos, yPos, 25, 20);
       r.setFill(Color.WHITE);
       r.setStroke(Color.BLACK);
-      Text tNum = new Text(r.getX(), r.getY() + 15, temp[i] + "");
+      Text tNum = new Text(r.getX(), r.getY() + 15, array[i] + "");
       getChildren().addAll(r, tNum);
-      if (!orig && i == current3) {
-        Text tCurrent3 = new Text(r.getX() + 5, r.getY() + 40, "C3");
-        getChildren().add(tCurrent3);
+      if (!orig && i == currentIndex) {
+        Text tCurrentIndex = new Text(r.getX() + 5, r.getY() + 40, indexName);
+        getChildren().add(tCurrentIndex);
       }
       xPos += 30.0;
     }
+    return xPos; // returns xPos for possible use by following invocations
   }
 
   public boolean step() {
