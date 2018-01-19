@@ -63,7 +63,7 @@ public class TwoWayLinkedList<E> extends AbstractSequentialList<E> {
     else if (index == 0) { addFirst(e); }
     else if (index >= size) { addLast(e); }
     else {
-      Node<E> current = head.next;
+      Node<E> current = head;
       for (int i = 1; i < index; i++) {
         current = current.next;
       }
