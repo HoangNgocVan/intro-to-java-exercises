@@ -4,10 +4,18 @@
   in a BST, and invokes the postorder method to display the elements.
 */
 
+import java.util.Scanner;
+
 public class E25_05 {
   public static void main(String[] args) {
-    String[] list = {"George", "Ben", "Mark", "Adam", "Carl", "Mack", "Nick"};
-    BST<String> tree = new BST<>(list);
+    Scanner input = new Scanner(System.in);
+    System.out.print("Enter 10 integers: ");
+    Integer[] list = new Integer[10];
+    for (int i = 0; i < list.length; i++) {
+      list[i] = input.nextInt();
+    }
+
+    BST<Integer> tree = new BST<>(list);
 
     tree.postorder();
     System.out.println();
