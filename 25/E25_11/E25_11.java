@@ -58,7 +58,7 @@ public class E25_11 extends Application {
     });
 
     Scene scene = new Scene(pane, 450, 450);
-    primaryStage.setTitle("BSTAnimation");
+    primaryStage.setTitle("E25_11");
     primaryStage.setScene(scene);
     primaryStage.show();
   }
