@@ -1,3 +1,16 @@
+/*
+  Modify Listing 25.9, BSTAnimation.java, to add three new buttons--
+  Show Inorder, Show Preorder, and Show Postorder--to display the result in a
+  label. You also need to modify BST.java to implement the inorderList(),
+  preorderList(), and postorderList() methods so that each of these methods
+  returns a List of the node elements in inorder, preorder, and postorder, as
+  follows:
+
+  public List<E> inorderList();
+  public List<E> preorderList();
+  public List<E> postorderList();
+*/
+
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
