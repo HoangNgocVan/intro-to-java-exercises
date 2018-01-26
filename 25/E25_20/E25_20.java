@@ -46,7 +46,8 @@ public class E25_20 {
     }
 
     for (int i = 0; i < containers.size(); i++) {
-      System.out.print("Container " + (i + 1) + " contains objects with weight ");
+      System.out.print("Container " + (i + 1) +
+        " contains objects with weight ");
       for (int j = 0; j < containers.get(i).size(); j++) {
         System.out.print(containers.get(i).get(j) + " ");
       }
