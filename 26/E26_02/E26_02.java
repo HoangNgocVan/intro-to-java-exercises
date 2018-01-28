@@ -8,6 +8,7 @@
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 
 public class E26_02 {
   public static void main(String[] args) {
@@ -61,11 +62,13 @@ public class E26_02 {
   }
 
   public static ArrayList<Integer> getNumbers(int n) {
-    ArrayList<Integer> numbers = new ArrayList<>();
+    HashSet<Integer> numbers = new HashSet<>();
     while (numbers.size() < n) {
-      numbers.add((int)(Math.random() * n * 8));
+      int random = (int)(Math.random() * n * 8);
+      if (!numbers.contains(random)) {
+        numbers.add(random);
+      }
     }
-    Collections.shuffle(numbers);
-    return numbers;
+    return new ArrayList<>(numbers);
   }
 }
