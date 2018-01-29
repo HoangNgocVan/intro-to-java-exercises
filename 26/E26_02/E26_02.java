@@ -64,10 +64,7 @@ public class E26_02 {
   public static ArrayList<Integer> getNumbers(int n) {
     HashSet<Integer> numbers = new HashSet<>();
     while (numbers.size() < n) {
-      int random = (int)(Math.random() * n * 8);
-      if (!numbers.contains(random)) {
-        numbers.add(random);
-      }
+      numbers.add((int)(Math.random() * n * 8));
     }
     return new ArrayList<>(numbers);
   }
