@@ -29,5 +29,10 @@ public class E20_04 {
     for (Point p: points) {
       System.out.println("[" + p.getX() + ", " + p.getY() + "]");
     }
+    System.out.println();
+    Arrays.sort(points, new Point());
+        for (int i = 0; i < 100 ; i++ ) {
+            System.out.print(points[i].getX() + ":" + points[i].getY() + " ");
+    }
   }
 }
